@@ -10,9 +10,18 @@ startBtn.addEventListener("click", function(event){
     questionHeading.textContent = questions[0].title;
     answersList.innerHTML = "";
 
+    
+    var seconds = document.getElementById("timer").textContent;
+    var timer = setInterval(function() {
+        seconds--;
+     document.getElementById("timer").textContent = seconds;
+        if (seconds <= 0) clearInterval(timer);
+        stopQuiz();
+    }, 1000);
+
     var choices = questions[0].choices;
     for (var i = 0; i < choices.length; i++){
-        var newChoice = document.createElement("div");
+        var newChoice = document.createElement("button");
         newChoice.textContent = choices[i];
         answersList.appendChild(newChoice);
     }
